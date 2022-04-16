@@ -1,8 +1,8 @@
-#  🌱Easy Dead-Letter 🌱
+# 🌱Easy Dead-Letter 🌱
 
 ## 📕Handling dead-letter queues in EasyNetQ (RabbitMQ) 
   
->Messages from a queue can be "dead-lettered"; that is, republished to an exchange when any of the following events occur:
+Messages from a queue can be "dead-lettered"; that is, republished to an exchange when any of the following events occur:
 
 > - The message is negatively acknowledged by a consumer using basic.reject or basic.nack with requeue parameter set to false.
 > - The message expires due to per-message TTL;
@@ -19,12 +19,32 @@ This functionality can be achieved via the **EasyDeadLetter** NuGet package. you
 
 ## 🔔How it works
 - First of all, Decorate your class object with **QeueuAttribute**
+```
+ [Queue("Product.Report", ExchangeName = "Product.Report")]
+ public class ProductReport { }
+```
 
 - The second step is to define your dead-letter queue with the same **QueueAttribute**
- 
+ ```
+ [Queue("Product.Report.DeadLetter", ExchangeName = "Product.Report.DeadLetter")]
+ public class ProductReportDeadLetter : ProductReport { }
+```
+
 - Now, it's time to decorate your main queue object with the **EasyDeadLetter** attribute and set the type of dead-letter queue.
- 
-- In the final step, you need to register **EasyDeadLetterStrategy**  as the **default error handler** in the **startup.cs**
+```
+[EasyDeadLetter(DeadLetterType = typeof(ProductReportDeadLetter))]
+[Queue("Product.Report", ExchangeName = "Product.Report")]
+public class ProductReport { }
+```
+- In the final step, you need to register **EasyDeadLetterStrategy**  as the default error handler **(IConsumerErrorStrategy)** in the **startup.cs**
+```
+services.AddSingleton<IBus>(RabbitHutch.CreateBus("connectionString",
+                                    serviceRegister =>
+                                    {
+                                        serviceRegister.Register<IConsumerErrorStrategy, EasyDeadLetterStrategy>();                                        
+                                    }));
+```
+
 
 That's all. from now on any failed message will be moved to the related dead-letter queue
 
@@ -37,4 +57,6 @@ That's all. from now on any failed message will be moved to the related dead-let
 
 ## Final though
 Feel free to send me your opinion. 👋 🔔🌱
+
+You can download the Nuget package from [Here](https://www.nuget.org/packages/EasyDeadLetterStrategy/)
 
