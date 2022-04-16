@@ -57,6 +57,6 @@ That's all. from now on any failed message will be moved to the related dead-let
 
 ## Final thought
 Feel free to send me your opinion. 👋 🔔🌱
-
+Read my article on Medium about this package : [Medium Link](https://m-qafouri.medium.com/implement-dead-letter-queue-for-easynetq-rabbitmq-f0138ef23f5f)
 You can download the Nuget package from [Here](https://www.nuget.org/packages/EasyDeadLetterStrategy/)
 
