@@ -1,14 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<Nullable>enable</Nullable>
 		<Authors>Majid Qafouri</Authors>
 		<Company>Majid Qafouri</Company>
-		<Version>1.1.1</Version>
+		<Version>1.1.2</Version>
 		<PackageId>EasyDeadLetterStrategy</PackageId>
 		<PackageTags>EasyNetQ;DeadLetter;ErrorHandling;RabbitMQ</PackageTags>
-		<Description>Creating automatic DeadLetter Queue and Exchange for EasyNetQ and RabbitMQ Messages. Developed by Majid Ghafouri</Description>
+		<Description>Creating automatic DeadLetter Queue and Exchange for EasyNetQ and RabbitMQ Messages. Developed by Majid Qafouri</Description>
+		<ApplicationIcon>icon.ico</ApplicationIcon>
+		<PackageProjectUrl>icon.ico</PackageProjectUrl>		
+		<RepositoryUrl>https://github.com/MajeQafouri/EasyDeadLetter</RepositoryUrl>
+		<RespositoryType>git</RespositoryType>		
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
