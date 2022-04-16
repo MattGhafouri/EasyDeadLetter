@@ -55,7 +55,7 @@ That's all. from now on any failed message will be moved to the related dead-let
 - any object which is not decorated with the **EasyDeadLetter** will be handled by the default mechanism of the EasyNetQ and RabbitMQ (will be saved into the **default error queue**).
 - In case of any exception in this NuGet package, the message will be moved to the  **default error queue**. and there is an **Exception** property for each message in this queue, which can be checked, and find the root cause of the issue.
 
-## Final though
+## Final thought
 Feel free to send me your opinion. 👋 🔔🌱
 
 You can download the Nuget package from [Here](https://www.nuget.org/packages/EasyDeadLetterStrategy/)
