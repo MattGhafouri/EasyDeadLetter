@@ -24,7 +24,7 @@ This functionality can be achieved via the **EasyDeadLetter** NuGet package. you
  public class ProductReport { }
 ```
 
-- The second step is to define your dead-letter queue with the same **QueueAttribute**
+- The second step is to define your dead-letter queue with the same **QueueAttribute** and also **inherit** the dead-letter object from the Main object class.
  ```
  [Queue("Product.Report.DeadLetter", ExchangeName = "Product.Report.DeadLetter")]
  public class ProductReportDeadLetter : ProductReport { }
