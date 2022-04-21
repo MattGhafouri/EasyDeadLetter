@@ -8,13 +8,13 @@ using System.Collections.Generic;
 namespace EasyNetQ.EasyDeadLetter
 {
     /// <summary>
-    /// DeadLetter does not implemented by EasyNetQ library.
-    /// The handling mechanism of the RabbitMQ failed messages is implemented in the HandleConsumerError class
-    /// Here this functionality is overrided.
-    /// From now on, all the failed messages instead of being moved to the default error queue, 
-    /// will be moved to a newly and automatically created dead letter exchange and dead letter queue.
-    /// Each Queue can possess its own specfic eadLetter queue, to achive this, the Queue object should be
-    /// decorated with the EasyDeadLetter attribute.
+    ///Dead-letter queues do not implement by the EasyNetQ library.
+    ///The handling mechanism of the RabbitMQ failed messages is implemented in the HandleConsumerError class
+    ///Here this functionality is overridden.
+    ///From now on, all the failed messages instead of being moved to the default error queue
+    ///will be moved to a newly and automatically created dead letter exchange and dead letter queue.
+    ///Each Queue can possess its own specific dead letter queue, to achieve this, the Queue object should be
+    ///decorated with the EasyDeadLetter attribute.
     /// </summary>
     public class EasyDeadLetterStrategy : DefaultConsumerErrorStrategy
     {
@@ -83,9 +83,8 @@ namespace EasyNetQ.EasyDeadLetter
                 model.BasicPublish(
                     deadLetterExchange,
                     context.ReceivedInfo.RoutingKey,
-                    GetProperties(model, deadLetterInfo.DeadLetterType.Name),
-                    context.Body);
-
+                    GetProperties(model, context.Properties, deadLetterInfo.DeadLetterType.Name),
+                    context.Body); 
 
                 return AckStrategies.Ack;
             }
@@ -139,10 +138,13 @@ namespace EasyNetQ.EasyDeadLetter
         /// <param name="model"></param>
         /// <param name="typeName"></param>
         /// <returns></returns>
-        private IBasicProperties GetProperties(IModel model, string typeName)
+        private IBasicProperties GetProperties
+            (IModel model, MessageProperties originalProperties, string typeName)
         {
             var properties = model.CreateBasicProperties();
-            
+
+            originalProperties.CopyTo(properties);
+
             properties.Type = typeName;
             properties.Persistent = true;
 

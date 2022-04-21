@@ -5,7 +5,7 @@
 		<Nullable>enable</Nullable>
 		<Authors>Majid Qafouri</Authors>
 		<Company>Majid Qafouri</Company>
-		<Version>1.1.2</Version>
+		<Version>1.1.3</Version>
 		<PackageId>EasyDeadLetterStrategy</PackageId>
 		<PackageTags>EasyNetQ;DeadLetter;ErrorHandling;RabbitMQ</PackageTags>
 		<Description>Creating automatic DeadLetter Queue and Exchange for EasyNetQ and RabbitMQ Messages. Developed by Majid Qafouri</Description>
@@ -13,7 +13,8 @@
 		<PackageProjectUrl>icon.ico</PackageProjectUrl>		
 		<RepositoryUrl>https://github.com/MajeQafouri/EasyDeadLetter</RepositoryUrl>
 		<RespositoryType>git</RespositoryType>		
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>		
+		<PackageReleaseNotes>Basic properties is cloned from the original message, test project added.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
