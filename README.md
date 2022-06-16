@@ -18,7 +18,7 @@ For example, if there is a queue named **Product.Report**, in case of any except
 This functionality can be achieved via the **EasyDeadLetter** NuGet package. you can find it on **[Nuget](https://www.nuget.org/packages/EasyDeadLetterStrategy/) website.**
 
 ## 🔔How it works
-- First of all, Decorate your class object with **QeueuAttribute**
+- First of all, Decorate your class object with **QueueAttribute**
 ```
  [Queue("Product.Report", ExchangeName = "Product.Report")]
  public class ProductReport { }
